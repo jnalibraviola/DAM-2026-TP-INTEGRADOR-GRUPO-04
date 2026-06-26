@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { useState, useEffect } from 'react';
+import { styles } from '../styles/Styles';
 
 
 export default function HomeScreen({ navigation }) {
@@ -13,6 +14,21 @@ useEffect(() => {
     setTareas(JSON.parse(guardadas));
   }
 }, []);
+const eliminarTarea = (index) => {
+  const nuevasTareas = tareas.filter((_, i) => i !== index);
+
+  setTareas(nuevasTareas);
+  localStorage.setItem("tareas", JSON.stringify(nuevasTareas));
+};
+
+const completarTarea = (index) => {
+  const nuevasTareas = [...tareas];
+
+  nuevasTareas[index].completada = !nuevasTareas[index].completada;
+
+  setTareas(nuevasTareas);
+  localStorage.setItem("tareas", JSON.stringify(nuevasTareas));
+};
 
     return (
         <View>
@@ -30,8 +46,37 @@ useEffect(() => {
             />
 
             {tareas.map((tarea, index) => (
-                <Text key={index}>{tarea.texto}</Text>
+            <View
+                    key={index}
+                    style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        marginVertical: 5,
+                    }}
+            >
+                <Text
+                style={{
+                        flex: 1,
+                        textDecorationLine: tarea.completada
+                            ? "line-through"
+                            : "none",
+                    }}
+                >
+                {tarea.texto}
+                </Text>
+
+                <Button
+                title={tarea.completada ? "Desmarcar" : "Completar"}
+                onPress={() => completarTarea(index)}
+                />
+
+                <Button
+                title="Eliminar"
+                onPress={() => eliminarTarea(index)}
+                />
+            </View>
             ))}
+
         </View>
     );
 }

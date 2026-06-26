@@ -14,7 +14,7 @@ card: {
     shadowOffset: { width: 12, height: 9 },
   },
 Boton: {
-backgroundColor: '#0a151d',
+backgroundColor: '#e0e8ee',
     padding: 5,
     borderRadius: 10,
 },

@@ -23,11 +23,6 @@ export default function AddTaskScreen() {
     setTexto('');
   };
 
-  const eliminarTarea = (index) => {
-    const nuevasTareas = tareas.filter((_, i) => i !== index);
-    setTareas(nuevasTareas);
-  };
-
   useEffect(() => {
     localStorage.setItem('tareas', JSON.stringify(tareas));
   }, [tareas]);
