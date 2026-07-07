@@ -4,6 +4,7 @@ import { styles } from '../styles/Styles';
 
 export default function AddTaskScreen() {
   const [texto, setTexto] = useState('');
+  const [descripcion, setDescripcion] = useState("");
 
   const [tareas, setTareas] = useState(() => {
     const guardadas = localStorage.getItem('tareas');
@@ -17,10 +18,19 @@ export default function AddTaskScreen() {
   });
 
   const agregarTarea = () => {
-    if (texto.trim() === '') return;
+    if (texto.trim() === "") return;
 
-    setTareas([...tareas, { texto, completada: false }]);
-    setTexto('');
+    setTareas([
+    ...tareas,
+      {
+        texto,
+        descripcion,
+        completada: false,
+      },
+    ]);
+
+    setTexto("");
+    setDescripcion("");
   };
 
   useEffect(() => {
@@ -41,8 +51,19 @@ export default function AddTaskScreen() {
         }}
       />
 
+      <TextInput
+        placeholder="Descripción de la tarea"
+        value={descripcion}
+        onChangeText={setDescripcion}
+        style={{
+          borderWidth: 2,
+          marginBottom: 10,
+          padding: 10,
+        }}
+      />
+
       <TouchableOpacity
-        style={styles.Boton}
+        style={styles.card}
         onPress={agregarTarea}
       >
         <Text>Agregar tarea</Text>

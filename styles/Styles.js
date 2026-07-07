@@ -1,33 +1,30 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-card: {
-    backgroundColor: '#28c9bb',
-    width: 700,
-    maxWidth: 360,
-    borderRadius: 36,
-    overflow: 'hidden',
-    elevation: 5,
-    shadowColor: '#d3d320',
-    shadowOpacity: 0.12,
-    shadowRadius: 8,
-    shadowOffset: { width: 12, height: 9 },
-  },
-Boton: {
-backgroundColor: '#e0e8ee',
-    padding: 5,
+  card: {
+    backgroundColor: "#fff",
     borderRadius: 10,
-},
-    container: {
-        flex: 1,
-        padding: 16,
-    },
+    padding: 15,
+    margin: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    elevation: 3,
+  },
 
+  titulo: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
 
-    nombre: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-  });
+  descripcion: {
+    fontSize: 15,
+    color: "#666",
+    marginBottom: 10,
+  },
 
+  botones: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+});

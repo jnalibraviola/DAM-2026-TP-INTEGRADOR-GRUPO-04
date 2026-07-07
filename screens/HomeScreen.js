@@ -30,54 +30,51 @@ const completarTarea = (index) => {
   localStorage.setItem("tareas", JSON.stringify(nuevasTareas));
 };
 
-    return (
-        <View>
+return (
+  <View>
 
+    <Text>Home Screen</Text>
 
-            <Text>Home Screen</Text>
+    <Button
+      title="Creación de tarea"
+      onPress={() => navigation.navigate("AddTaskScreen")}
+    />
 
+    {tareas.map((tarea, index) => (
+      <View key={index} style={styles.card}>
 
+        <Text
+          style={[
+            styles.titulo,
+            {
+              textDecorationLine: tarea.completada
+                ? "line-through"
+                : "none",
+            },
+          ]}
+        >
+          {tarea.texto}
+        </Text>
 
-            <Button
-                title="creacion de tarea"
-                onPress={() => {
-                navigation.navigate('AddTaskScreen');
-                }}
-            />
+        <Text style={styles.descripcion}>
+          {tarea.descripcion}
+        </Text>
 
-            {tareas.map((tarea, index) => (
-            <View
-                    key={index}
-                    style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        marginVertical: 5,
-                    }}
-            >
-                <Text
-                style={{
-                        flex: 1,
-                        textDecorationLine: tarea.completada
-                            ? "line-through"
-                            : "none",
-                    }}
-                >
-                {tarea.texto}
-                </Text>
+        <View style={styles.botones}>
+          <Button
+            title={tarea.completada ? "Desmarcar" : "Completar"}
+            onPress={() => completarTarea(index)}
+          />
 
-                <Button
-                title={tarea.completada ? "Desmarcar" : "Completar"}
-                onPress={() => completarTarea(index)}
-                />
-
-                <Button
-                title="Eliminar"
-                onPress={() => eliminarTarea(index)}
-                />
-            </View>
-            ))}
-
+          <Button
+            title="Eliminar"
+            onPress={() => eliminarTarea(index)}
+          />
         </View>
-    );
-}
 
+      </View>
+    ))}
+
+  </View>
+);
+}
